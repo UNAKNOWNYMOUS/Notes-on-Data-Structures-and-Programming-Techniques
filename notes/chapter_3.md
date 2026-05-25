@@ -24,3 +24,54 @@
 ##### 3.2.2.1.1 Normal mode
 ##### 3.2.2.1.2 Insert mode
 #### 3.2.2.2 Settings
+## 3.3 Compilation tools
+### 3.3.1 The GNU C Compiler gcc
+- A C program will typically consist of one or more files whose names end with `.c`.
+- `gdb` needs: `gcc -g3 -o foo foo.c`
+- By default, `gcc` doesn't check everything that might be wrong with your program. But if you give it a few extra arguments, it will warn you about many (but not all) potential problems: `gcc -g3 -Wall -o foo foo.c`.
+### 3.3.2 Make
+- For complicated programs involving multiple source files, you are probably better off using `make` than calling `gcc` directly.
+  - Make is a "rule-based expert system" that figures out how to compile programs given a little bit of information about their components.
+- In general you will probably want to write a `Makefile` or `makefile`.
+#### 3.3.2.1 Make gotchas
+- Make really cares that the command lines start with a TAB character.
+- One way of converting leading spaces into TABs it to use the `unexpand` program:
+```bash
+mv Makefile Makefile.old
+unexpand Makefile.old > Makefile
+```
+## 3.4 Debugging tools
+- The standard debugger is `gdb` and a memory error checker `valgrind`.
+### 3.4.1 Debugging in general
+- Basic method of all debugging:
+  - Know what your program is supposed to do
+  - Detect when it doesn't
+  - Fix it
+### 3.4.2 Assertions
+- Every non-trivial C program should include `<assert.h>`, which gives you the `assert` macro.
+### 3.4.3 The GNU debugger gdb
+- The standard debugger on Linux is called `gdb`.
+#### 3.4.3.1 My favorite gdb commands
+- `help`
+- `run`
+- `quit`
+- `break`
+- `list`
+- `next`
+- `step`
+- `finish`
+- `cont`
+- `print`
+- `display`
+- `backtrace` - `bt` - `bt full`
+- `set disable-randomization off`
+#### 3.4.3.2 Debugging strategies
+- In general, the idea behind debugging is that a bad program starts out OK, but after executing for a while it gets confused and starts misbehaving.
+- The key to all debugging is knowing what your code is supposed to do.
+#### 3.4.3.3 Common application of gdb
+##### 3.4.3.3.1 Watching your program run
+##### 3.4.3.3.2 Dealing with failed assertions
+##### 3.4.3.3.3 Dealing with segmentation faults
+##### 3.4.3.3.4 Dealing with infinite loops
+##### 3.4.3.3.5 Mysterious variable changes
+### 3.4.4 Valgrind
