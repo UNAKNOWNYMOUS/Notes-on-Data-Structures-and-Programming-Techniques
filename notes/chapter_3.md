@@ -1,3 +1,9 @@
+---
+id: chapter_3
+aliases: []
+tags: []
+---
+
 # 3 The Linux programming environment
 ## 3.1 The shell
 ### 3.1.1 Getting a shell prompt in the Zoo
@@ -75,3 +81,11 @@ unexpand Makefile.old > Makefile
 ##### 3.4.3.3.4 Dealing with infinite loops
 ##### 3.4.3.3.5 Mysterious variable changes
 ### 3.4.4 Valgrind
+- The valgrind program can be used to detect some (but not all) common errors in C programs that use pointers and dynamic storage allocation.
+#### 3.4.4.1 Compilation flags
+#### 3.4.4.2 Automated testing
+#### 3.4.4.3 Examples of some common valgrind errors
+##### 3.4.4.3.1 Uninitialized values
+##### 3.4.4.3.2 Bytes definitely lost
+##### 3.4.4.3.3 Invalid write or read operations
+### 3.4.5 Not recommended: debugging output
