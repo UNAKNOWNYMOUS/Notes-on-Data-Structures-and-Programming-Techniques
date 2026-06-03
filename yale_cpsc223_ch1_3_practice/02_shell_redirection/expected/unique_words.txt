@@ -1,0 +1,7 @@
+c
+gcc
+git
+linux
+make
+shell
+systems
