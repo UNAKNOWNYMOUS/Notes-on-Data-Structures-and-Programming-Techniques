@@ -1,4 +1,0 @@
-WARNING disk almost full
-ERROR failed to open config
-WARNING using fallback config
-ERROR network timeout
