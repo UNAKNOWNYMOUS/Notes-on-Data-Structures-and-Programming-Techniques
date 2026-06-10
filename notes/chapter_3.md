@@ -91,8 +91,5 @@ unexpand Makefile.old > Makefile
 ### 3.4.5 Not recommended: debugging output
 ## 3.5 Performance tuning
 ### 3.5.1 Timing under Linux
-- `time` command in Linux measure "real time" (what it sounds like), "user time" (the amount of time the program runs), and "system time" (the amount of time the operating systems spends supporting your program, e.g. by loading it from disk and doing I/O). Real time need not be equal to the sum of user time and system time, since the operating system may simultaneously running other programs.
-### 3.5.2 Profiling with `valgrind`
-- The problem with `time` is that it only tells you how much time your whole program took, but not where it spent its time.
-- This is similar to looking at a program without a debugger: you can't see what's happening inside.
-- If you want to see where your program is spending its time, you need to use a profiler.
+- `time` measures "real time" (what it sounds like), "user time" (the amount of time the program runs), and "system time" (the amount of time the operating system spends supporting your program, e.g. by loading it from disk and doing I/O). Real time need not be equal to the sum of user time and system time, since the operating system may be simultaneously running other programs.
+  - This arises because of measurement errors and variations in how long different operations take. But usually the variation will not be much.
