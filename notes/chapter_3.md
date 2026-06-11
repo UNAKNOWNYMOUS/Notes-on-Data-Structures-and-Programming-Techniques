@@ -92,4 +92,18 @@ unexpand Makefile.old > Makefile
 ## 3.5 Performance tuning
 ### 3.5.1 Timing under Linux
 - `time` measures "real time" (what it sounds like), "user time" (the amount of time the program runs), and "system time" (the amount of time the operating system spends supporting your program, e.g. by loading it from disk and doing I/O). Real time need not be equal to the sum of user time and system time, since the operating system may be simultaneously running other programs.
-  - This arises because of measurement errors and variations in how long different operations take. But usually the variation will not be much.
+### 3.5.2 Profiling with `valgrind`
+- The problem with `time` is that it only tells you how much time your whole program took, but not where it spent its time.
+- If you want to see where your program is spending its time, you need to use a profiler.
+- One profiler is: `callgrind`.
+  - A tool built into `valgrind`.
+- `valgrind` only prints a bit of summary data while executing, to get a full report, we use a separate program `callgrind_annotate`.
+- `__strcat_sse3` - is an assembly-language implementation of `strcat` (hence the `.S` in the source file name) that uses the special SSE instructions in the x86 instruction set to speed up copying.
+### 3.5.3 Profiling with `gprof`
+- If you can't use `valgrind` for profiling, don't like the output you get from it, or are annoyed by the huge slowdown when profiling your program, you may be able to get similar results from an older program `gprof`, which is closely tied to the `gcc` compiler.
+- Unlike `valgrind`, which simulates an x86 CPU one machine-code instruction at a time, `gprof` works by having `gcc` add extra code to your program to track function calls and do sampling at runtime to see where your program is spending its time.
+  - The cost of this approach is that you get a bit less accuracy. I have also found `gprof` to be tricky to get working right on some operating systems.
+- Compiling a C program with the `-pg` option to `gcc`, inserts profiling code that counts how many times each function is called and how long (on average) each call takes.
+- Because the profile is not very smart about shared libraries, we also including the `--static` option to force the resulting program to be statically linked.
+#### 3.5.3.1 Effect of optimization during compilation
+- In compiler construction, strength reduction is a compiler optimization where expensive operations are replaced with equivalent but less expensive operations.
